@@ -1,0 +1,41 @@
+/* C++14
+This can be solved using Top-Down (Memoization) Dynamic Programming (DP)
+(1) Determine the reccursive:
+F(n) = F(n - 1) + F(n - 2), for n > 1. (As given in the question)
+*Base case for F(0) = 0, F(1) = 1
+[Reccursive Form]
+int fib(int n){
+  if ( n == 1) return 1; //base case of 1.
+  if (n == 0) return 0; //base case of 0.
+  return fib(n-1) + fib(n-2);
+  }
+Steps:
+1. Get n value , n = 6
+2. run fib(6) , return fib(5) + fib(4)
+2a. run fib(5), return fib(4) + fib(3) ~> run fib(3), return fib(2) + fib(1) ~> run fib(2), return fib(1) + fib(0)
+2b. run fib(4), return fib(3) + fib(2) ~> run fib(3), return fib(2) + fib(1) ~> run fib(2), return fib(1) + fib(0)
+2c. run fib(2), return fib(1) + fib(0)
+Total steps : 8 + sum up steps;
+[Top-Down DP Form]
+As shown in the below:
+Steps:
+1. Get n value, n = 6
+2. run fib(6), run for loop : 
+a.memo[2] = memo[1] + memo[0] //note : memo[1] and memo[0] already stored in the array memo[];
+b.memo[3] = memo[2] + memo[1] //note : memo[2] and memo[1] already stored in the array memo[];
+c.memo[4] = memo[3] + memo[2] //note : memo[3] and memo[2] already stored in the array memo[];
+d.memo[5] = memo[4] + memo[3] //note : memo[4] and memo[3] already stored in the array memo[];
+e.memo[6] = memo[5] + memo[4] //note : memo[5] and memo[4] already stored in the array memo[];
+Total steps : 6 (included sum up steps);
+
+*/
+class Solution {
+public:
+    int fib(int n) {
+        if (n<2)return n;
+        int memo[n+1];
+        memo[0]=0;memo[1]=1;
+        for(int i = 2; i <= n; i++)memo[i]=memo[i-1]+memo[i-2];
+        return memo[n];
+    }
+};
