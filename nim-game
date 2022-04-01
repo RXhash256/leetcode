@@ -1,0 +1,22 @@
+/* C++14
+**YOU take first and LAST ONE who take the remaining stone WIN**
+Assume x stones is on the table:
+you take 1 (or x-1) stone and your friends could take 1 stone (or x-2) , 2 stone (or x-3) , 3 stone (or x-4)
+you take 2 (or x-2) stone and your friends could take 1 stone (or x-3) , 2 stone (or x-4) , 3 stone (or x-5)
+you take 3 (or x-3) stone and your friends could take 1 stone (or x-4) , 2 stone (or x-5) , 3 stone (or x-6)
+all 3 cases share (x-4) same combinations; meaning :
+assume have 4 stones
+if u take 1 , and your friend take 3 , you lose
+if u take 2 , and your frined take 2, you lose
+if u take 3, and your friend take 1, you lose
+
+therefore : if the stone is multiple of 4, you definetely lose:
+return (n % 4 !=0) or return !(n % 4 == 0) is acceptable.
+
+*/
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return(n%4 != 0);
+    }
+};
